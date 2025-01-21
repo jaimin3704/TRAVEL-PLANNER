@@ -1,0 +1,99 @@
+/* Ensure the main container is fully centered */
+.video-call-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh; /* Full viewport height */
+  background-color: #f4f4f4; /* Light background for contrast */
+  padding: 20px;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+/* Style for the video grid */
+.video-call-grid {
+  display: flex;
+  justify-content: center;
+  gap: 20px; /* Space between the videos */
+  margin-bottom: 20px;
+  flex-wrap: wrap; /* Makes it responsive */
+}
+
+/* Style for each video container */
+.video-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 300px; /* Fixed width */
+}
+
+/* Style for the videos */
+.video {
+  width: 100%; /* Full width of the container */
+  height: 200px;
+  background-color: black; /* Placeholder background */
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Style for the call actions */
+.call-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px; /* Space between elements */
+}
+
+/* Style for buttons */
+.button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  background-color: #007bff; /* Blue color */
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.button:hover {
+  background-color: #0056b3; /* Darker blue on hover */
+}
+
+/* Start button specific styling */
+.start-button {
+  background-color: #28a745; /* Green color */
+}
+
+.start-button:hover {
+  background-color: #218838; /* Darker green */
+}
+
+/* Join button specific styling */
+.join-button {
+  background-color: #ffc107; /* Yellow color */
+}
+
+.join-button:hover {
+  background-color: #e0a800; /* Darker yellow */
+}
+
+/* Style for the signal input */
+.signal-input {
+  width: 100%;
+  max-width: 400px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 14px;
+  resize: none;
+}
+
+/* Message when connected */
+.connected-message {
+  font-size: 18px;
+  color: #28a745;
+  margin-top: 20px;
+  font-weight: bold;
+}
