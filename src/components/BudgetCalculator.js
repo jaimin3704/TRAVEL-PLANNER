@@ -18,11 +18,18 @@ const travelPackages = [
   { id: 14, name: "Darjeeling", baseCost: 25000, hotelCostPerDay: 1700, foodCostPerDay: 900 },
 ];
 
+const insurancePlans = [
+  { title: "Basic Plan", details: "Covers flight delays, baggage loss, and medical emergencies.", price: 500 },
+  { title: "Standard Plan", details: "Includes trip cancellations, accident coverage, and emergency assistance.", price: 1200 },
+  { title: "Premium Plan", details: "Covers trip interruptions, high medical coverage, and theft protection.", price: 2500 }
+];
+
 const BudgetCalculator = () => {
   const [selectedPackage, setSelectedPackage] = useState(null);
   const [days, setDays] = useState(1);
   const [includeHotel, setIncludeHotel] = useState(false);
   const [includeFood, setIncludeFood] = useState(false);
+  const [selectedInsurance, setSelectedInsurance] = useState(null);
   const [budget, setBudget] = useState(0);
 
   const handlePackageChange = (e) => {
@@ -45,6 +52,9 @@ const BudgetCalculator = () => {
     }
     if (includeFood) {
       totalBudget += selectedPackage.foodCostPerDay * days;
+    }
+    if (selectedInsurance) {
+      totalBudget += selectedInsurance.price;
     }
 
     setBudget(totalBudget);
@@ -104,23 +114,48 @@ const BudgetCalculator = () => {
             Include Food
           </label>
         </div>
+
+        {/* Insurance Selection */}
+        <div className="input-group">
+          <label className="input-label">Select Travel Insurance:</label>
+          <select
+            onChange={(e) => {
+              const selectedPlan = insurancePlans.find(plan => plan.title === e.target.value);
+              setSelectedInsurance(selectedPlan);
+            }}
+            className="input-field"
+          >
+            <option value="">No Insurance</option>
+            {insurancePlans.map((plan, index) => (
+              <option key={index} value={plan.title}>
+                {plan.title} (₹{plan.price})
+              </option>
+            ))}
+          </select>
+        </div>
+
         <button onClick={calculateBudget} className="calculate-button">
           Calculate Budget
         </button>
+
         {selectedPackage && (
           <div className="package-details">
             <h3>Package Details</h3>
-            <p>
-              <strong>Base Cost:</strong> ₹{selectedPackage.baseCost}
-            </p>
-            <p>
-              <strong>Hotel Cost/Day:</strong> ₹{selectedPackage.hotelCostPerDay}
-            </p>
-            <p>
-              <strong>Food Cost/Day:</strong> ₹{selectedPackage.foodCostPerDay}
-            </p>
+            <p><strong>Base Cost:</strong> ₹{selectedPackage.baseCost}</p>
+            <p><strong>Hotel Cost/Day:</strong> ₹{selectedPackage.hotelCostPerDay}</p>
+            <p><strong>Food Cost/Day:</strong> ₹{selectedPackage.foodCostPerDay}</p>
           </div>
         )}
+
+        {selectedInsurance && (
+          <div className="insurance-details">
+            <h3>Selected Insurance</h3>
+            <p><strong>Plan:</strong> {selectedInsurance.title}</p>
+            <p><strong>Details:</strong> {selectedInsurance.details}</p>
+            <p><strong>Price:</strong> ₹{selectedInsurance.price}</p>
+          </div>
+        )}
+
         {budget > 0 && (
           <div className="budget-result">
             <h2>Estimated Total Budget: ₹{budget}</h2>

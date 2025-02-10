@@ -1,60 +1,55 @@
-import React, { useState, useEffect } from "react";
-import { useLocation } from "react-router-dom";
-import axios from 'axios'; // Import axios for making API calls
+import React, { useState, useEffect } from "react";  // Import React hooks
+import { useLocation, useNavigate } from "react-router-dom";  // Import navigation hooks
+import axios from 'axios';  // Import axios for making API calls
 
-// Function to get weather data from OpenWeatherMap
+// Function to get weather data using OpenWeatherMap API
 const getWeather = async (city) => {
-  const apiKey = 'eebff73bde6f7fb76afafe2ad2eb0fcf'; // Replace with your OpenWeatherMap API key
-  const baseUrl = 'https://api.openweathermap.org/data/2.5/weather';
+  const apiKey = 'eebff73bde6f7fb76afafe2ad2eb0fcf';  // Replace with your OpenWeatherMap API key
+  const baseUrl = 'https://api.openweathermap.org/data/2.5/weather';  // Base URL for API
   
   try {
-    // Fetch weather data from OpenWeatherMap API
     const response = await axios.get(baseUrl, {
       params: {
         q: city,
         appid: apiKey,
-        units: 'metric', // Use 'metric' for Celsius temperatures
-        lang: 'en', // Language of weather description
+        units: 'metric',
+        lang: 'en'
       }
     });
-    
-    // Parse the response
+
     const weatherData = response.data;
     return {
       temperature: weatherData.main.temp,
       description: weatherData.weather[0].description,
-      icon: `https://openweathermap.org/img/wn/${weatherData.weather[0].icon}.png`, // Weather icon URL
-      bestTime: "November to February", // Example, you can customize this based on season
+      icon: `https://openweathermap.org/img/wn/${weatherData.weather[0].icon}.png`,
+      bestTime: "November to February"
     };
   } catch (error) {
     console.error("Error fetching weather data:", error);
-    return null; // In case of error, return null
+    return null;
   }
 };
 
 const TravelGridDetails = () => {
-  const location = useLocation(); // Access state passed through navigate()
-  const destination = location.state; // The state contains the full location object
-  
+  const location = useLocation();  // Get the location state
+  const navigate = useNavigate();  // Initialize navigation
+
+  const destination = location.state;  // Extract destination details
   const [weather, setWeather] = useState(null);
   const [loading, setLoading] = useState(true);
 
+  // Fetch weather when the component loads
   useEffect(() => {
-    // Fetch weather data for the destination
     const fetchWeather = async () => {
-      const weatherData = await getWeather(destination.name); // Get weather for the destination
-      if (weatherData) {
-        setWeather(weatherData);
-      }
+      const weatherData = await getWeather(destination.name);
+      if (weatherData) setWeather(weatherData);
       setLoading(false);
     };
 
     fetchWeather();
   }, [destination.name]);
 
-  if (!destination) {
-    return <div>Destination details not found.</div>;
-  }
+  if (!destination) return <div>Destination details not found.</div>;
 
   return (
     <div style={{ padding: "40px 20px", textAlign: "center", maxWidth: "900px", margin: "0 auto", marginTop: "80px" }}>
@@ -65,7 +60,6 @@ const TravelGridDetails = () => {
         <p style={{ fontSize: "1.2em", color: "#555" }}><strong>Highlights:</strong> {destination.highlights}</p>
       </div>
 
-      {/* Weather Section */}
       {loading ? (
         <p style={{ fontSize: "1.2em", color: "#777" }}>Loading weather...</p>
       ) : (
@@ -79,8 +73,24 @@ const TravelGridDetails = () => {
           <p style={{ fontSize: "1.2em", color: "#555" }}><strong>Best Time to Visit:</strong> {weather.bestTime}</p>
         </div>
       )}
+
+      <button
+        onClick={() => navigate(-1)}
+        style={{
+          marginTop: "20px",
+          padding: "10px 20px",
+          fontSize: "1.2em",
+          backgroundColor: "#007bff",
+          color: "#fff",
+          border: "none",
+          cursor: "pointer",
+          borderRadius: "5px"
+        }}
+      >
+        Back to Destinations
+      </button>
     </div>
   );
 };
 
-export default TravelGridDetails;
+export default TravelGridDetails;  // Export component

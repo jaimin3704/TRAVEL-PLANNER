@@ -1,18 +1,17 @@
 import React from 'react';
-import './TravelGrid.css'; // Import the CSS file
-import { useNavigate } from "react-router-dom";
+import './TravelGrid.css';
+import { useNavigate } from 'react-router-dom';
 
-// Travel Destinations Data
 const travelDestinations = [
   {
-   region: 'North India',
+    region: 'North India',
     locations: [
       { name: 'Shimla', type: 'Hill Station', highlights: 'Beautiful landscapes, pleasant weather, trekking', img: "https://plus.unsplash.com/premium_photo-1697729690458-2d64ca777c04?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8c2hpbWxhfGVufDB8fDB8fHww" },
       { name: 'Manali', type: 'Adventure / Mountain', highlights: 'Paragliding, river rafting, trekking', img: "https://i.pinimg.com/474x/fd/5d/72/fd5d72dfd8712e4741b3ddfcaec0742b.jpg" },
       { name: 'Agra', type: 'Heritage / Culture', highlights: 'Taj Mahal, Agra Fort', img: "https://i.pinimg.com/474x/ba/46/90/ba46909ae656057d6829788913b707bb.jpg" },
       { name: 'Varanasi', type: 'Spiritual / Cultural', highlights: 'Ganga Aarti, Kashi Vishwanath Temple', img: "https://i.pinimg.com/736x/d9/21/ce/d921ce0dca361c69e9a7668130c2d033.jpg" },
-      { name: 'Sikkim', type: 'Mountain Hill', highlights: 'Gangtok, Lachung, zero point', img: "https://i.pinimg.com/736x/ac/b3/b8/acb3b8f6fbe933724791a098751b20c0.jpg" },
-      { name: 'Nainital',  rtype: 'Lake', highlights: 'Ayarpata, Deopata, Handi-Bandi, Sher-Ka-Danda', img: "https://i.pinimg.com/736x/cc/6e/cf/cc6ecf4ed4af38bd519319dea03730ae.jpg" }
+      { name: 'Sikkim', type: 'Mountain Hill', highlights: 'Gangtok, Lachung, Zero Point', img: "https://i.pinimg.com/736x/ac/b3/b8/acb3b8f6fbe933724791a098751b20c0.jpg" },
+      { name: 'Nainital', type: 'Lake', highlights: 'Ayarpata, Deopata, Handi-Bandi, Sher-Ka-Danda', img: "https://i.pinimg.com/736x/cc/6e/cf/cc6ecf4ed4af38bd519319dea03730ae.jpg" }
     ],
   },
   {
@@ -28,24 +27,22 @@ const travelDestinations = [
     region: 'West India',
     locations: [
       { name: 'Goa', type: 'Beach / Leisure', highlights: 'Beaches, water sports, nightlife', img: "https://i.pinimg.com/474x/fe/c0/fb/fec0fb1c9a2a70f4812e3fe9ddc88d86.jpg" },
-      { name: 'Jaipur', type: 'Heritage / Culture', highlights: 'Amer Fort, Hawa Mahal', img: "https://i.pinimg.com/474x/dd/94/49/dd9449814cc77e7d5398651679bf4707.jpg" },
+      { name: 'Jaipur', type: 'Heritage / Culture', highlights: 'Amer Fort, Hawa Mahal', img: "https://i.pinimg.com/474x/dd/94/49/dd9449814cc77e7d5398651679bf4707.jpg" }
     ],
   },
   {
     region: 'East India',
     locations: [
       { name: 'Kolkata', type: 'Heritage / Culture', highlights: 'Victoria Memorial, Howrah Bridge', img: "https://i.pinimg.com/474x/19/da/e7/19dae7ddb77be5deadc49287c19f352e.jpg" },
-      { name: 'Darjeeling', type: 'Hill Station', highlights: 'Tea plantations, Tiger Hill', img: "https://i.pinimg.com/474x/4f/3d/a5/4f3da5b42f1b3480ccafc3c6e72f4b25.jpg" },
+      { name: 'Darjeeling', type: 'Hill Station', highlights: 'Tea plantations, Tiger Hill', img: "https://i.pinimg.com/474x/4f/3d/a5/4f3da5b42f1b3480ccafc3c6e72f4b25.jpg" }
     ],
-  },
+  }
 ];
 
 const TravelGrid = () => {
   const navigate = useNavigate();
 
-  // Handle card click event
   const handleCardClick = (location) => {
-    // Navigate to the details page and pass location data as state
     navigate(`/destination/${location.name}`, { state: location });
   };
 
@@ -58,21 +55,11 @@ const TravelGrid = () => {
             <h2 className="region-title">{regionData.region}</h2>
             <div className="card-container">
               {regionData.locations.map((location, index) => (
-                <div
-                  className="card"
-                  key={index}
-                  onClick={() => handleCardClick(location)}
-                >
-                  <img
-                    className="card-image"
-                    src={location.img}
-                    alt={location.name}
-                  />
+                <div className="card" key={index} onClick={() => handleCardClick(location)}>
+                  <img className="card-image" src={location.img} alt={location.name} />
                   <div className="card-text">
                     <h3 className="card-title">{location.name}</h3>
-                    <p className="card-description">
-                      {location.type} | <strong>{location.highlights}</strong>
-                    </p>
+                    <p className="card-description">{location.type} | <strong>{location.highlights}</strong></p>
                   </div>
                 </div>
               ))}

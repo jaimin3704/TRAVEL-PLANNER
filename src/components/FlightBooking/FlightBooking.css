@@ -1,0 +1,168 @@
+/* Flight Booking Styles (using CSS3 for smooth animations) */
+@keyframes slideIn {
+    0% {
+      transform: translateX(-100%);
+      opacity: 0;
+    }
+    100% {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+  
+  .flight-booking {
+    animation: slideIn 0.5s ease-out;
+    background: #f0f4f8;
+    padding-top: 4rem; /* Adjust padding to make room for the navbar */
+    min-height: 100vh;
+  }
+  
+  .card {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  .card:hover {
+    transform: scale(1.05);
+  }
+  
+  .card-header {
+    background-color: #007bff;
+    color: white;
+    padding: 1rem;
+    border-radius: 10px 10px 0 0;
+  }
+  
+  .card-body {
+    padding: 2rem;
+  }
+  
+  .card-footer {
+    background-color: #f8f9fa;
+    padding: 1rem;
+    border-radius: 0 0 10px 10px;
+  }
+  
+  .button-primary {
+    background-color: #007bff;
+    color: white;
+    padding: 0.75rem 2rem;
+    border-radius: 25px;
+    text-align: center;
+    transition: background-color 0.3s ease-in-out;
+  }
+  
+  .button-primary:hover {
+    background-color: #0056b3;
+  }
+  
+  button:focus {
+    outline: none;
+  }
+  
+  .input-field {
+    border-radius: 10px;
+    padding: 0.75rem;
+    border: 2px solid #ddd;
+    transition: border-color 0.3s ease-in-out;
+  }
+  
+  .input-field:focus {
+    border-color: #007bff;
+    outline: none;
+  }
+  
+  .header-title {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #333;
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+  
+  .step-indicator {
+    text-align: center;
+    margin-bottom: 2rem;
+    font-size: 1.1rem;
+  }
+  
+  .step-indicator span {
+    font-weight: 600;
+    color: #007bff;
+  }
+  
+  /* Full-Screen Error Overlay */
+  .error-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.6); /* Semi-transparent black */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    opacity: 0;
+    animation: fadeIn 0.5s forwards;
+  }
+  
+  /* Error Message Box */
+  .error-message {
+    background-color: #0400fa;
+    color: white;
+    padding: 20px 40px;
+    border-radius: 8px;
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+    max-width: 80%;
+    width: 400px;
+    animation: slideInError 0.5s ease-out;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 150px; /* Adjust height for the button */
+  }
+  
+  /* Fade-in Animation for Overlay */
+  @keyframes fadeIn {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+  
+  /* Slide-in Animation for Error Message */
+  @keyframes slideInError {
+    0% {
+      transform: translateY(-50px);
+      opacity: 0;
+    }
+    100% {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+  
+  /* OK Button Styling */
+  .error-message button {
+    background-color: #ffffff;
+    color: #0008f8;
+    border: none;
+    padding: 10px 20px;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: auto; /* Push the button to the bottom */
+  }
+  
+  .error-message button:hover {
+    background-color: #f2f2f2;
+  }
+  

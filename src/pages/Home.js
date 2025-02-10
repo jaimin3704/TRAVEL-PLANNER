@@ -16,6 +16,11 @@ const Home = () => {
     navigate('/travelgrid'); // Redirect to the destinations page
   };
 
+  // Handle click to customize trip
+  const handleCustomizeTrip = () => {
+    navigate('customize-trip'); // Redirect to the customize trip page
+  };
+
   // Fetch weather data when the component mounts
   useEffect(() => {
     const fetchWeatherData = async () => {
@@ -56,12 +61,22 @@ const Home = () => {
           </p>
 
           {/* Button to Explore Destinations */}
-          <button
-            onClick={handleExplore}
-            className="px-6 py-3 bg-blue-600 text-lg font-bold rounded-lg shadow-md hover:bg-blue-700 transition duration-300"
-          >
-            Start Exploring
-          </button>
+          <div className="flex flex-col items-center">
+            <button
+              onClick={handleExplore}
+              className="px-6 py-3 bg-blue-600 text-lg font-bold rounded-lg shadow-md hover:bg-blue-700 transition duration-300"
+            >
+              Start Exploring
+            </button>
+
+            {/* ✨ New Customize Trip Button Below */}
+            <button
+              onClick={handleCustomizeTrip}
+              className="mt-4 px-6 py-3 bg-orange-500 text-lg font-bold rounded-lg shadow-md hover:bg-orange-600 transition duration-300"
+            >
+              Customize Your Trip
+            </button>
+          </div>
 
           {/* Scroll Down Prompt */}
           <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2">
