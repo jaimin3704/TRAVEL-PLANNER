@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, useLocation, Link } from 'react-router-dom';
 import { AnimatePresence } from 'framer-motion';
 
 // Components
@@ -16,6 +16,7 @@ import WeatherAlerts from './pages/WeatherAlerts';
 // Travel Features
 import TravelGrid from './components/TravelGrid';
 import TravelGridDetails from './components/TravelGridDetails';
+// Updated import for Virtual Travel Assistant/Group Travel
 import VirtualGroupTravel from './components/VideoCall';
 import BudgetCalculator from './components/BudgetCalculator';
 import MoodTracker from './components/MoodTracker';
@@ -30,9 +31,10 @@ import Payment from './components/FlightBooking/Payment';
 // ✅ Customize Trip Feature
 import CustomizeTrip from './pages/CustomizeTrip';
 import TripSummary from './pages/TripSummary';
-import { Link } from 'react-router-dom';
 
-// Animated Routes for smooth transitions
+// Virtual Travel Assistant Chatbot
+import TravelAssistantChatbot from './components/TravelAssistantChatbot/TravelAssistantChatbot';
+
 const AnimatedRoutes = () => {
   const location = useLocation();
 
@@ -66,6 +68,9 @@ const AnimatedRoutes = () => {
         <Route path="/customize-trip" element={<CustomizeTrip />} />
         <Route path="/trip-summary" element={<TripSummary />} />
 
+        {/* Virtual Travel Assistant Chatbot */}
+        <Route path="/virtual-assistant" element={<TravelAssistantChatbot />} />
+
         {/* ✅ 404 Fallback with "Go Home" Button */}
         <Route
           path="*"
@@ -84,7 +89,6 @@ const AnimatedRoutes = () => {
   );
 };
 
-// Main App Component
 const App = () => {
   return (
     <Router>
